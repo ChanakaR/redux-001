@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 
 import CounterControl from '../../components/CounterControl/CounterControl';
 import CounterOutput from '../../components/CounterOutput/CounterOutput';
+import * as actionTypes from '../../store/actions';
+
 
 class Counter extends Component {
     state = {
@@ -56,12 +58,13 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        incCounter: () => dispatch({ type:"INC" }),
-        decCounter: () => dispatch({ type:"DEC" }),
-        addCounter: () => dispatch({ type:"ADD" , val: 5 }),
-        subCounter: () => dispatch({ type:"SUB" , val: 5 }),
-        storeCounter: () => dispatch({ type:"ADD_TO_STORE" }),
-        removeCounter: (id) => dispatch({ type:"REMOVE_FROM_STORE" , elementId : id }),
+        incCounter: () => dispatch({ type: actionTypes.INCREMENT }),
+        decCounter: () => dispatch({ type:actionTypes.DECREMENT }),
+        addCounter: () => dispatch({ type:actionTypes.ADD , val: 5 }),
+        subCounter: () => dispatch({ type:actionTypes.SUBTRACT , val: 5 }),
+        storeCounter: () => dispatch({ type:actionTypes.ADD_TO_STORE }),
+        removeCounter: (id) => dispatch({ type:actionTypes.REMOVE_FROM_STORE , elementId : id }),
     }
 }
+
 export default connect(mapStateToProps,mapDispatchToProps)(Counter);
